@@ -32,14 +32,17 @@ final class KvClient {
   private final RandomAccessSet<ByteString> knownKeys = new RandomAccessSet<>();
   private final Channel channel;
 
-  private long rpcCount;
+  public long rpcCountCreate;
+  public long rpcCountUpdate;
+  public long rpcCountRetrieve;
+  public long rpcCountDelete;
 
   KvClient(Channel channel) {
     this.channel = channel;
   }
 
   long getRpcCount() {
-    return rpcCount;
+    return rpcCountCreate + rpcCountUpdate + rpcCountRetrieve + rpcCountDelete;
   }
 
   /**
@@ -53,8 +56,10 @@ final class KvClient {
     while (!done.get()) {
       // Pick a random CRUD action to take.
       int command = random.nextInt(4);
+
       if (command == 0) {
         doCreate(stub);
+        rpcCountCreate++;
         continue;
       }
       // If we don't know about any keys, retry with a new random action.
@@ -63,14 +68,16 @@ final class KvClient {
       }
       if (command == 1) {
         doRetrieve(stub);
+        rpcCountRetrieve++;
       } else if (command == 2) {
         doUpdate(stub);
+        rpcCountUpdate++;
       } else if (command == 3) {
         doDelete(stub);
+        rpcCountDelete++;
       } else {
         throw new AssertionError();
       }
-      rpcCount++;
     }
   }
 
@@ -90,7 +97,10 @@ final class KvClient {
       }
     } catch (StatusRuntimeException e) {
       if (e.getStatus().getCode() == Code.ALREADY_EXISTS) {
-        knownKeys.remove(key);
+        // [edsko@well-typed.com:] Log the error, but don't update local state
+        // In the original, we removed the key from 'knownKeys' here, but since
+        // we discovered the key /exists/ (perhaps it was created by another
+        // client), removing it would cause our local state to diverge /more/.
         logger.log(Level.INFO, "Key already existed", e);
       } else {
         throw e;

@@ -17,16 +17,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-
-/**
- * This is the actual server logic.  It includes a basic key value store, as well as implements
- * thread safe methods for creating, retrieving, updating, and deleting values.  (These are
- * commonly known as "CRUD" operations.)
- */
+// KeyValueServiceImplBase is generated from the .proto file
 final class KvService extends KeyValueServiceImplBase {
 
   private static final long READ_DELAY_MILLIS = 10;
   private static final long WRITE_DELAY_MILLIS = 50;
+
+  private static void simulateWork(long millis) {
+    try {
+      TimeUnit.MILLISECONDS.sleep(millis);
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new RuntimeException(e);
+    }
+  }
 
   private final Map<ByteBuffer, ByteBuffer> store = new HashMap<>();
 
@@ -83,14 +87,5 @@ final class KvService extends KeyValueServiceImplBase {
     store.remove(key);
     responseObserver.onNext(DeleteResponse.getDefaultInstance());
     responseObserver.onCompleted();
-  }
-
-  private static void simulateWork(long millis) {
-    try {
-      TimeUnit.MILLISECONDS.sleep(millis);
-    } catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new RuntimeException(e);
-    }
   }
 }
