@@ -40,8 +40,9 @@ public final class KvRunner {
     if (channel != null) {
       throw new IllegalStateException("Already started");
     }
+    // https://grpc.github.io/grpc-java/javadoc/io/grpc/ManagedChannelBuilder.html#usePlaintext()
     channel = ManagedChannelBuilder.forTarget("dns:///localhost:" + server.getPort())
-        .usePlaintext(true)
+        .usePlaintext()
         .build();
     ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     try {
