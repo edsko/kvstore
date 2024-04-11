@@ -126,7 +126,7 @@ final class KvClient {
           error.compareAndSet(null, t);
         }
       }
-    });
+    }, MoreExecutors.directExecutor());
   }
 
   /**
@@ -169,7 +169,7 @@ final class KvClient {
           error.compareAndSet(null, t);
         }
       }
-    });
+    }, MoreExecutors.directExecutor());
   }
 
   /**
@@ -210,7 +210,7 @@ final class KvClient {
           error.compareAndSet(null, t);
         }
       }
-    });
+    }, MoreExecutors.directExecutor());
   }
 
   /**
@@ -247,7 +247,7 @@ final class KvClient {
           error.compareAndSet(null, t);
         }
       }
-    });
+    }, MoreExecutors.directExecutor());
   }
 
   /**
