@@ -40,8 +40,9 @@ public final class KvRunner {
     if (channel != null) {
       throw new IllegalStateException("Already started");
     }
+    // https://grpc.github.io/grpc-java/javadoc/io/grpc/ManagedChannelBuilder.html#usePlaintext()
     channel = ManagedChannelBuilder.forTarget("dns:///localhost:" + server.getPort())
-        .usePlaintext(true)
+        .usePlaintext()
         .build();
     ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     try {
@@ -51,7 +52,12 @@ public final class KvRunner {
       scheduler.schedule(() -> done.set(true), DURATION_SECONDS, TimeUnit.SECONDS);
       client.doClientWork(done);
       double qps = (double) client.getRpcCount() / DURATION_SECONDS;
-      logger.log(Level.INFO, "Did {0} RPCs/s", new Object[]{qps});
+      System.out.printf("Did %.3f RPCs/s\n", qps);
+      System.out.printf("Totals:\n");
+      System.out.printf("  %d CREATE\n",   client.rpcCountCreate);
+      System.out.printf("  %d UPDATE\n",   client.rpcCountUpdate);
+      System.out.printf("  %d RETRIEVE\n", client.rpcCountRetrieve);
+      System.out.printf("  %d DELETE\n",   client.rpcCountDelete);
     } finally {
       scheduler.shutdownNow();
       channel.shutdownNow();
@@ -62,7 +68,7 @@ public final class KvRunner {
     if (server != null) {
       throw new IllegalStateException("Already started");
     }
-    server = ServerBuilder.forPort(0).addService(new KvService()).build();
+    server = ServerBuilder.forPort(50051).addService(new KvService()).build();
     server.start();
   }
 

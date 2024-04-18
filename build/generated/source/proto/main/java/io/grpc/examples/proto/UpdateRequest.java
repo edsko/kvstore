@@ -6,7 +6,7 @@ package io.grpc.examples.proto;
 /**
  * Protobuf type {@code io.grpc.UpdateRequest}
  */
-public  final class UpdateRequest extends
+public final class UpdateRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:io.grpc.UpdateRequest)
     UpdateRequestOrBuilder {
@@ -21,63 +21,23 @@ private static final long serialVersionUID = 0L;
   }
 
   @java.lang.Override
+  @SuppressWarnings({"unused"})
+  protected java.lang.Object newInstance(
+      UnusedPrivateParameter unused) {
+    return new UpdateRequest();
+  }
+
+  @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
     return this.unknownFields;
-  }
-  private UpdateRequest(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          default: {
-            if (!parseUnknownFieldProto3(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-          case 10: {
-
-            key_ = input.readBytes();
-            break;
-          }
-          case 18: {
-
-            value_ = input.readBytes();
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
     return io.grpc.examples.proto.KeyValues.internal_static_io_grpc_UpdateRequest_descriptor;
   }
 
+  @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
     return io.grpc.examples.proto.KeyValues.internal_static_io_grpc_UpdateRequest_fieldAccessorTable
@@ -86,24 +46,29 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int KEY_FIELD_NUMBER = 1;
-  private com.google.protobuf.ByteString key_;
+  private com.google.protobuf.ByteString key_ = com.google.protobuf.ByteString.EMPTY;
   /**
    * <code>bytes key = 1;</code>
+   * @return The key.
    */
+  @java.lang.Override
   public com.google.protobuf.ByteString getKey() {
     return key_;
   }
 
   public static final int VALUE_FIELD_NUMBER = 2;
-  private com.google.protobuf.ByteString value_;
+  private com.google.protobuf.ByteString value_ = com.google.protobuf.ByteString.EMPTY;
   /**
    * <code>bytes value = 2;</code>
+   * @return The value.
    */
+  @java.lang.Override
   public com.google.protobuf.ByteString getValue() {
     return value_;
   }
 
   private byte memoizedIsInitialized = -1;
+  @java.lang.Override
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
     if (isInitialized == 1) return true;
@@ -113,6 +78,7 @@ private static final long serialVersionUID = 0L;
     return true;
   }
 
+  @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
     if (!key_.isEmpty()) {
@@ -121,9 +87,10 @@ private static final long serialVersionUID = 0L;
     if (!value_.isEmpty()) {
       output.writeBytes(2, value_);
     }
-    unknownFields.writeTo(output);
+    getUnknownFields().writeTo(output);
   }
 
+  @java.lang.Override
   public int getSerializedSize() {
     int size = memoizedSize;
     if (size != -1) return size;
@@ -137,7 +104,7 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeBytesSize(2, value_);
     }
-    size += unknownFields.getSerializedSize();
+    size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
   }
@@ -152,13 +119,12 @@ private static final long serialVersionUID = 0L;
     }
     io.grpc.examples.proto.UpdateRequest other = (io.grpc.examples.proto.UpdateRequest) obj;
 
-    boolean result = true;
-    result = result && getKey()
-        .equals(other.getKey());
-    result = result && getValue()
-        .equals(other.getValue());
-    result = result && unknownFields.equals(other.unknownFields);
-    return result;
+    if (!getKey()
+        .equals(other.getKey())) return false;
+    if (!getValue()
+        .equals(other.getValue())) return false;
+    if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+    return true;
   }
 
   @java.lang.Override
@@ -172,7 +138,7 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getKey().hashCode();
     hash = (37 * hash) + VALUE_FIELD_NUMBER;
     hash = (53 * hash) + getValue().hashCode();
-    hash = (29 * hash) + unknownFields.hashCode();
+    hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
@@ -247,6 +213,7 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
+  @java.lang.Override
   public Builder newBuilderForType() { return newBuilder(); }
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
@@ -254,6 +221,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder(io.grpc.examples.proto.UpdateRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
+  @java.lang.Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
         ? new Builder() : new Builder().mergeFrom(this);
@@ -277,6 +245,7 @@ private static final long serialVersionUID = 0L;
       return io.grpc.examples.proto.KeyValues.internal_static_io_grpc_UpdateRequest_descriptor;
     }
 
+    @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return io.grpc.examples.proto.KeyValues.internal_static_io_grpc_UpdateRequest_fieldAccessorTable
@@ -286,37 +255,35 @@ private static final long serialVersionUID = 0L;
 
     // Construct using io.grpc.examples.proto.UpdateRequest.newBuilder()
     private Builder() {
-      maybeForceBuilderInitialization();
+
     }
 
     private Builder(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
-      maybeForceBuilderInitialization();
+
     }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
-    }
+    @java.lang.Override
     public Builder clear() {
       super.clear();
+      bitField0_ = 0;
       key_ = com.google.protobuf.ByteString.EMPTY;
-
       value_ = com.google.protobuf.ByteString.EMPTY;
-
       return this;
     }
 
+    @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
       return io.grpc.examples.proto.KeyValues.internal_static_io_grpc_UpdateRequest_descriptor;
     }
 
+    @java.lang.Override
     public io.grpc.examples.proto.UpdateRequest getDefaultInstanceForType() {
       return io.grpc.examples.proto.UpdateRequest.getDefaultInstance();
     }
 
+    @java.lang.Override
     public io.grpc.examples.proto.UpdateRequest build() {
       io.grpc.examples.proto.UpdateRequest result = buildPartial();
       if (!result.isInitialized()) {
@@ -325,40 +292,57 @@ private static final long serialVersionUID = 0L;
       return result;
     }
 
+    @java.lang.Override
     public io.grpc.examples.proto.UpdateRequest buildPartial() {
       io.grpc.examples.proto.UpdateRequest result = new io.grpc.examples.proto.UpdateRequest(this);
-      result.key_ = key_;
-      result.value_ = value_;
+      if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
     }
 
-    public Builder clone() {
-      return (Builder) super.clone();
+    private void buildPartial0(io.grpc.examples.proto.UpdateRequest result) {
+      int from_bitField0_ = bitField0_;
+      if (((from_bitField0_ & 0x00000001) != 0)) {
+        result.key_ = key_;
+      }
+      if (((from_bitField0_ & 0x00000002) != 0)) {
+        result.value_ = value_;
+      }
     }
+
+    @java.lang.Override
+    public Builder clone() {
+      return super.clone();
+    }
+    @java.lang.Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
-      return (Builder) super.setField(field, value);
+      return super.setField(field, value);
     }
+    @java.lang.Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return (Builder) super.clearField(field);
+      return super.clearField(field);
     }
+    @java.lang.Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return (Builder) super.clearOneof(oneof);
+      return super.clearOneof(oneof);
     }
+    @java.lang.Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         int index, java.lang.Object value) {
-      return (Builder) super.setRepeatedField(field, index, value);
+      return super.setRepeatedField(field, index, value);
     }
+    @java.lang.Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
-      return (Builder) super.addRepeatedField(field, value);
+      return super.addRepeatedField(field, value);
     }
+    @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof io.grpc.examples.proto.UpdateRequest) {
         return mergeFrom((io.grpc.examples.proto.UpdateRequest)other);
@@ -376,57 +360,86 @@ private static final long serialVersionUID = 0L;
       if (other.getValue() != com.google.protobuf.ByteString.EMPTY) {
         setValue(other.getValue());
       }
-      this.mergeUnknownFields(other.unknownFields);
+      this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
     }
 
+    @java.lang.Override
     public final boolean isInitialized() {
       return true;
     }
 
+    @java.lang.Override
     public Builder mergeFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      io.grpc.examples.proto.UpdateRequest parsedMessage = null;
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              key_ = input.readBytes();
+              bitField0_ |= 0x00000001;
+              break;
+            } // case 10
+            case 18: {
+              value_ = input.readBytes();
+              bitField0_ |= 0x00000002;
+              break;
+            } // case 18
+            default: {
+              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                done = true; // was an endgroup tag
+              }
+              break;
+            } // default:
+          } // switch (tag)
+        } // while (!done)
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (io.grpc.examples.proto.UpdateRequest) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
+        onChanged();
+      } // finally
       return this;
     }
+    private int bitField0_;
 
     private com.google.protobuf.ByteString key_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>bytes key = 1;</code>
+     * @return The key.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getKey() {
       return key_;
     }
     /**
      * <code>bytes key = 1;</code>
+     * @param value The key to set.
+     * @return This builder for chaining.
      */
     public Builder setKey(com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       key_ = value;
+      bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
     /**
      * <code>bytes key = 1;</code>
+     * @return This builder for chaining.
      */
     public Builder clearKey() {
-      
+      bitField0_ = (bitField0_ & ~0x00000001);
       key_ = getDefaultInstance().getKey();
       onChanged();
       return this;
@@ -435,36 +448,41 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.ByteString value_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>bytes value = 2;</code>
+     * @return The value.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getValue() {
       return value_;
     }
     /**
      * <code>bytes value = 2;</code>
+     * @param value The value to set.
+     * @return This builder for chaining.
      */
     public Builder setValue(com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      if (value == null) { throw new NullPointerException(); }
       value_ = value;
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
     /**
      * <code>bytes value = 2;</code>
+     * @return This builder for chaining.
      */
     public Builder clearValue() {
-      
+      bitField0_ = (bitField0_ & ~0x00000002);
       value_ = getDefaultInstance().getValue();
       onChanged();
       return this;
     }
+    @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFieldsProto3(unknownFields);
+      return super.setUnknownFields(unknownFields);
     }
 
+    @java.lang.Override
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.mergeUnknownFields(unknownFields);
@@ -486,11 +504,23 @@ private static final long serialVersionUID = 0L;
 
   private static final com.google.protobuf.Parser<UpdateRequest>
       PARSER = new com.google.protobuf.AbstractParser<UpdateRequest>() {
+    @java.lang.Override
     public UpdateRequest parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new UpdateRequest(input, extensionRegistry);
+      Builder builder = newBuilder();
+      try {
+        builder.mergeFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(builder.buildPartial());
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(e)
+            .setUnfinishedMessage(builder.buildPartial());
+      }
+      return builder.buildPartial();
     }
   };
 
@@ -503,6 +533,7 @@ private static final long serialVersionUID = 0L;
     return PARSER;
   }
 
+  @java.lang.Override
   public io.grpc.examples.proto.UpdateRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }

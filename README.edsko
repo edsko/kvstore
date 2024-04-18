@@ -1,0 +1,26 @@
+# Dependencies
+
+JRE and JDK
+
+```bash
+$ apt install default-jre default-jdk
+```
+
+Gradle (using `snap` rather than `apt`, the version in `apt` is much too old
+for recent JDK):
+
+```bash
+$ sudo snap install --classic gradle
+```
+
+# `gradle-wrapper.jar` 
+
+Updated the Gradle Wrapper by running
+
+```bash
+$ gradle wrapper -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts
+```
+
+See https://docs.gradle.org/8.7/userguide/gradle_wrapper.html#sec:adding_wrapper
+
+(For the `cacerts` thing, see https://stackoverflow.com/questions/73937250/gradle-build-fails-java-security-nosuchalgorithmexception-error-constructing-im / https://stackoverflow.com/questions/50448147/java-runtime-error-in-ubuntu-where-in-a-code-to-put-javax-net-ssl-truststore)
